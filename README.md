@@ -18,14 +18,26 @@ Prometheus comes with various components like
 4. Service Discovery: As promethues operate based on pull model, it should know  about list of target to scrape. So, in the case of a static environment, we update the promethues configuration file and restart the promethus server everytime we add or remove a target. But in the case of dynamic environment like kubernetes or any auto-scaling  enabled cloud environment (AWS, Azure, GCP) where the resources will be created and terminated automatically, it will be very difficult to update the promethues configuration everytime. So, prometheus comes with a component called service-discovery that discovers the list of targets to monitor dynamically.
 5. AlertManager: Prometheus allows us to define alert rules and when any rules is violated, then promethues triggers that alert but it can't handle the nofitications itself. So, Promethues comes with alertmanager which actions on the alerts by sending notification to the administrators or corresponding people through gmal, slack channel, sms, etc.
 
-Steps to install Prometheus as SystemD service:
+Steps to install Prometheus as SystemD service: 
+
+with this type of installation, we can operate the prometheus server lifecycle using systemctl 
 
 1. go to prometheus official downloads page and choose the version based on operating system
 
    ![image](https://github.com/venkatesh-reddy679/Prometheus-alertmanager-project/assets/60383183/75c36f14-fee9-47ba-adad-ec0453f1f64d)
 2. download and extract the prometheus tar file
 
-   ![image](https://github.com/venkatesh-reddy679/Prometheus-alertmanager-project/assets/60383183/c451eb07-35d3-410c-9c6f-47fbec2fd257)
+   ![image](https://github.com/venkatesh-reddy679/Prometheus-alertmanager-project/assets/60383183/c451eb07-35d3-410c-9c6f-47fbec2fd257)4
+
+3. create user named prometheus, create a directory with name prometheus in /etc, and move prometheus.yml, consoles, and console_libraries, then finally give the ownership of prometheus folder to user prometheus.
+
+   ![image](https://github.com/venkatesh-reddy679/Prometheus-alertmanager-project/assets/60383183/ea3f5c7f-3caf-415f-93fa-17cb5b1a51e6)
+
+4. move the prometheus executable file and promtool command line unility into /usr/local/bin, give ownership to user prometheus
+
+   ![image](https://github.com/venkatesh-reddy679/Prometheus-alertmanager-project/assets/60383183/850a427a-897c-49d8-9478-ef4e1f2c48d6)
+
+
 
 
 
