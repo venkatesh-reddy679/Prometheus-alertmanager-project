@@ -20,7 +20,10 @@ Prometheus comes with various components like
 
 Steps to install Prometheus as SystemD service:
 
-1. 
+1. go to prometheus official downloads page and choose the version based on operating system
+
+   ![image](https://github.com/venkatesh-reddy679/Prometheus-alertmanager-project/assets/60383183/75c36f14-fee9-47ba-adad-ec0453f1f64d)
+
 
 
 
