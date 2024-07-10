@@ -33,9 +33,14 @@ with this type of installation, we can operate the prometheus server lifecycle u
 
    ![image](https://github.com/venkatesh-reddy679/Prometheus-alertmanager-project/assets/60383183/ea3f5c7f-3caf-415f-93fa-17cb5b1a51e6)
 
-4. move the prometheus executable file and promtool command line unility into /usr/local/bin, give ownership to user prometheus
+4. move the prometheus executable file and promtool command line utility into /usr/local/bin, give ownership to user prometheus
 
    ![image](https://github.com/venkatesh-reddy679/Prometheus-alertmanager-project/assets/60383183/850a427a-897c-49d8-9478-ef4e1f2c48d6)
+
+5. create a directory with name prometheus in /var/lib whcih will be used by promethues to store the time-series data and give ownership to user prometheus. Create a service unit file in /etc/systemd/system
+
+   ![image](https://github.com/venkatesh-reddy679/Prometheus-alertmanager-project/assets/60383183/f60ffe28-39d4-49f1-af4e-1dbe2f5c87a4)
+
 
 
 
