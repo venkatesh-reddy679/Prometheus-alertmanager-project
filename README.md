@@ -23,6 +23,10 @@ Steps to install Prometheus as SystemD service:
 1. go to prometheus official downloads page and choose the version based on operating system
 
    ![image](https://github.com/venkatesh-reddy679/Prometheus-alertmanager-project/assets/60383183/75c36f14-fee9-47ba-adad-ec0453f1f64d)
+2. download and extract the prometheus tar file
+
+   ![image](https://github.com/venkatesh-reddy679/Prometheus-alertmanager-project/assets/60383183/c451eb07-35d3-410c-9c6f-47fbec2fd257)
+
 
 
 
