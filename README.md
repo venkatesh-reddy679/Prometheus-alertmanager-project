@@ -128,7 +128,7 @@ Steps to install and setup blackbox exporter as SystemD service: (over the same 
    ![image](https://github.com/venkatesh-reddy679/Prometheus-alertmanager-project/assets/60383183/7d000264-db75-4181-accf-26d7f3b82211)
    ![image](https://github.com/venkatesh-reddy679/Prometheus-alertmanager-project/assets/60383183/c87e881b-8bb7-4f66-b9ab-7e04ebfb482e)
 
-5. I have exposed a java application on port 8080 of the server where the node_exporter is already running and will configure this endpoint as target in the blackbox_exporter configuration. we can find the blackbox_exporter prometheus configuration in thier offifical github https://github.com/prometheus/blackbox_exporter
+5. I have exposed a java application on port 8080 of the server where the node_exporter is already running and will configure this endpoint as target in the blackbox_exporter configuration. we can find the blackbox_exporter prometheus configuration in thier offifical github https://github.com/prometheus/blackbox_exporter and restart prometheus
 
    Note:
    
@@ -140,6 +140,11 @@ Steps to install and setup blackbox exporter as SystemD service: (over the same 
    ![image](https://github.com/venkatesh-reddy679/Prometheus-alertmanager-project/assets/60383183/4eaf9874-e463-4d8a-8c0e-20f039a79143)
 
    we have to configure the endpoint to probe under static_configs > targets and configure the ip where the blackbox_exporter is running under relabel_configs > replacement. for this project, i'm running  the exporter on the same prometheus server.
+
+6. In prometheus web UI, go to status > targets to view the configured target status. Blackbox_exporter extracts the metrics from configured targets and expose them over /probe endpoint in a format that prometheus understand and scrape. Prometheus scrapes the blackbox_exporter like any other target (metrics_path default to /metrics endpoint) but over /probe endpoint .
+
+   ![image](https://github.com/venkatesh-reddy679/Prometheus-alertmanager-project/assets/60383183/1b2345d2-3008-4079-9473-8cdc67fd0abc)
+
 
 
 
