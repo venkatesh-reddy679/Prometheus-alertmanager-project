@@ -55,9 +55,10 @@ with this type of installation, we can operate the prometheus server lifecycle u
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+
 Node Exporter: Node Exporter is a type of prometheus exporter that is designed to extract the metrics from linux servers and expose them in a format that prometheus can understand and scrape. Node Exporter should be installed onn target machines.
 
-Steps to install Node Exporter as SystemD service:
+Steps to install and setup Node Exporter as SystemD service:
 
 1. go to prometheus downloads page and choose the version based on your operating system
 
@@ -96,8 +97,44 @@ Steps to install Node Exporter as SystemD service:
     ![image](https://github.com/venkatesh-reddy679/Prometheus-alertmanager-project/assets/60383183/9bf6717d-2ce8-414f-8613-a18aaf70beb0)
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-Bla
+
+Blackbox Exporter: Blackbox exporter is a type of prometheus exporter that is used to probe the endpoints such as http, https, tcp, dns and more. It allows us to monitor the health and performance of these endpoints from an external perspective, essentially treating the endpoints as "black boxes" whose internal workings are not inspected, only their responses.
+
+Key Features
+HTTP(S) Probing: Measures latency, response codes, and other HTTP-level metrics.
+TCP Probing: Checks the availability and latency of TCP connections.
+DNS Probing: Measures the performance and correctness of DNS lookups.
+ICMP Probing: Similar to ping, it checks the availability and round-trip time of a host.
+
+Steps to install and setup blackbox exporter as SystemD service: (over the same prometheus server)
+
+1. go to prometheus downloads page and choose the specific version based on the operating system
+
+   ![image](https://github.com/venkatesh-reddy679/Prometheus-alertmanager-project/assets/60383183/43e00b1e-c9f8-4d24-9d56-fff672ead830)
+
+2. download the tar file using wget, and extract it
+
+   ![image](https://github.com/venkatesh-reddy679/Prometheus-alertmanager-project/assets/60383183/22044e08-b417-42a9-9305-dcfdfc29dadc)
+
+3. create a user named blackbox_exporter, move the blackbox_exporter executable file into /usr/local/bin and giv the ownership to the user blackbox_user, then create directory  named blackbox_exporter in /etc and move the configuration file into the directry and give the ownership to the user blackbox_exporter.
+
+   ![image](https://github.com/venkatesh-reddy679/Prometheus-alertmanager-project/assets/60383183/4342120b-5aba-4301-a5bd-9dc86fea084e)
+
+4. create a service unit file in /etc/systemd/system directory and start the blackbox_exporter service
+
+   ![image](https://github.com/venkatesh-reddy679/Prometheus-alertmanager-project/assets/60383183/c90660e4-0fe7-4291-be3d-fb0844da93da)
+   ![image](https://github.com/venkatesh-reddy679/Prometheus-alertmanager-project/assets/60383183/7d000264-db75-4181-accf-26d7f3b82211)
+
+
+   
+
+
+
+
+
+
 
 
     
