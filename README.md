@@ -144,6 +144,15 @@ Steps to install and setup blackbox exporter as SystemD service: (over the same 
 6. In prometheus web UI, go to status > targets to view the configured target status. Blackbox_exporter extracts the metrics from configured targets and expose them over /probe endpoint in a format that prometheus understand and scrape. Prometheus scrapes the blackbox_exporter like any other target (metrics_path default to /metrics endpoint) but over /probe endpoint .
 
    ![image](https://github.com/venkatesh-reddy679/Prometheus-alertmanager-project/assets/60383183/1b2345d2-3008-4079-9473-8cdc67fd0abc)
+   ![image](https://github.com/venkatesh-reddy679/Prometheus-alertmanager-project/assets/60383183/19817472-3dad-4999-b9bb-822306e96151)
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+   
+
 
 
 
