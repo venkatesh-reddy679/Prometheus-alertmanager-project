@@ -82,6 +82,26 @@ Steps to install Node Exporter as SystemD service:
 
    ![image](https://github.com/venkatesh-reddy679/Prometheus-alertmanager-project/assets/60383183/92bd8f6d-c165-493c-a318-ba7554f8255e)
 
+7. update the prometheus configuration file with the address of target and restart prometheus service
+
+   ![image](https://github.com/venkatesh-reddy679/Prometheus-alertmanager-project/assets/60383183/7b1be010-db85-487a-aeae-5ef28e5e66dc)
+
+8. In the prometheus web UI, navigate to targets section to verify whether prometheus is able to reach the configured target. 
+
+   ![image](https://github.com/venkatesh-reddy679/Prometheus-alertmanager-project/assets/60383183/c62faf53-46fe-49bf-b07f-f06185c36cce)
+
+9. "up" is the most simplest PromQL expression that indicates whether prometheus is able to scrape the target and the two target labels instance and job will be associated with every timeseries that we get from the target.
+
+    ![image](https://github.com/venkatesh-reddy679/Prometheus-alertmanager-project/assets/60383183/9bf6717d-2ce8-414f-8613-a18aaf70beb0)
+
+
+    
+
+
+   
+
+
+
 
 
 
