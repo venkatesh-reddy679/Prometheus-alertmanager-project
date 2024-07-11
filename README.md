@@ -1,3 +1,6 @@
+![image](https://github.com/venkatesh-reddy679/Prometheus-alertmanager-project/assets/60383183/633f40b6-b544-4305-b0dc-393b2ade497e)
+
+
 Prometheus: Prometheus is an open-source cross platform monitoring and alerting tool kit that scrapes the configured targets such as servers, containers, and applications periodically and stores the collected metrics in a time-series database which can be retrieved and visualised later using prometheus built-in feautres like console-templates and expression browser or third-party tools like Grafana.
 
 Architecture of Prometheus:
