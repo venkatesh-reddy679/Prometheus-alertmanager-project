@@ -54,6 +54,35 @@ with this type of installation, we can operate the prometheus server lifecycle u
    ![image](https://github.com/venkatesh-reddy679/Prometheus-alertmanager-project/assets/60383183/53f1848c-aa23-4924-8f62-8a56d871a57e)
 
 
+Node Exporter: Node Exporter is a type of prometheus exporter that is designed to extract the metrics from linux servers and expose them in a format that prometheus can understand and scrape. Node Exporter should be installed onn target machines.
+
+Steps to install Node Exporter as SystemD service:
+
+1. go to prometheus downloads page and choose the version based on your operating system
+
+   ![image](https://github.com/venkatesh-reddy679/Prometheus-alertmanager-project/assets/60383183/692357fd-c917-435a-aca1-5786b04b2157)
+
+2. download the tar file using wget and extract it
+
+   ![image](https://github.com/venkatesh-reddy679/Prometheus-alertmanager-project/assets/60383183/2e986c1e-301e-493e-a78b-96cbdaac31c7)
+
+3. create a user named node_exporter, move the node_exporter executable file into /usr/local/bin folder and give the ownership of the file to the user node_exporter
+
+   ![image](https://github.com/venkatesh-reddy679/Prometheus-alertmanager-project/assets/60383183/fd102060-502e-4772-8759-85d1b830f6eb)
+   
+4. create a service unit file /etc/systemd/system/node-exporter.service
+
+   ![image](https://github.com/venkatesh-reddy679/Prometheus-alertmanager-project/assets/60383183/63d0bdff-187f-4650-887f-9c02fa9401cd)
+
+5. reload the system daemon, start the node_exporer service, and enable it to start on system boot
+
+   ![image](https://github.com/venkatesh-reddy679/Prometheus-alertmanager-project/assets/60383183/2ceb3600-55ef-4673-ac32-f6183d1059d2)
+
+
+
+
+
+
 
 
 
