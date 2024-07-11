@@ -1,0 +1,14 @@
+[Unit]
+Description=Node_Exporter
+wants=network-online.target
+after=network-online.target
+
+[Service]
+Type=simple
+User=node_exporter
+Group=node_exporter
+ExecStart= /usr/local/bin/node_exporter
+
+[Install]
+WantedBy=multi-user.target
+
