@@ -122,10 +122,14 @@ Steps to install and setup blackbox exporter as SystemD service: (over the same 
 
    ![image](https://github.com/venkatesh-reddy679/Prometheus-alertmanager-project/assets/60383183/4342120b-5aba-4301-a5bd-9dc86fea084e)
 
-4. create a service unit file in /etc/systemd/system directory and start the blackbox_exporter service
+4. create a service unit file in /etc/systemd/system directory and start the blackbox_exporter service. Blackbox_exporter runs on port 9115 of the host.
 
    ![image](https://github.com/venkatesh-reddy679/Prometheus-alertmanager-project/assets/60383183/c90660e4-0fe7-4291-be3d-fb0844da93da)
    ![image](https://github.com/venkatesh-reddy679/Prometheus-alertmanager-project/assets/60383183/7d000264-db75-4181-accf-26d7f3b82211)
+   ![image](https://github.com/venkatesh-reddy679/Prometheus-alertmanager-project/assets/60383183/c87e881b-8bb7-4f66-b9ab-7e04ebfb482e)
+
+
+
 
 
    
