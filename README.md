@@ -37,9 +37,21 @@ with this type of installation, we can operate the prometheus server lifecycle u
 
    ![image](https://github.com/venkatesh-reddy679/Prometheus-alertmanager-project/assets/60383183/850a427a-897c-49d8-9478-ef4e1f2c48d6)
 
-5. create a directory with name prometheus in /var/lib whcih will be used by promethues to store the time-series data and give ownership to user prometheus. Create a service unit file in /etc/systemd/system
+5. create a directory with name prometheus in /var/lib whcih will be used by promethues to store the time-series data and give ownership to user prometheus. Create a service unit file in /etc/systemd/system with ame prometheus.service and configure the service.
 
    ![image](https://github.com/venkatesh-reddy679/Prometheus-alertmanager-project/assets/60383183/f60ffe28-39d4-49f1-af4e-1dbe2f5c87a4)
+   ![image](https://github.com/venkatesh-reddy679/Prometheus-alertmanager-project/assets/60383183/422a90ea-2ac4-4b81-adf9-33b476521faa)
+
+6. reload the daemon and start the prometheus service, enable it to start on  boot
+
+   ![image](https://github.com/venkatesh-reddy679/Prometheus-alertmanager-project/assets/60383183/a42f9440-11fb-4a78-b9ba-d32140cbe6d4)
+
+7. prometheus is running on port 9090 of the server and prometheus scrapes itself by default to monitor the reachability, cpu, storage consumed by promethues
+
+   ![image](https://github.com/venkatesh-reddy679/Prometheus-alertmanager-project/assets/60383183/53f1848c-aa23-4924-8f62-8a56d871a57e)
+
+
+
 
 
 
