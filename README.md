@@ -78,6 +78,11 @@ Steps to install Node Exporter as SystemD service:
 
    ![image](https://github.com/venkatesh-reddy679/Prometheus-alertmanager-project/assets/60383183/2ceb3600-55ef-4673-ac32-f6183d1059d2)
 
+6. node_exporter runs on port 9100 of the target. click on the /target url to view the metrics  such as cpu, storage, memory, arp entries, etc. collected by node_exporter.
+
+   ![image](https://github.com/venkatesh-reddy679/Prometheus-alertmanager-project/assets/60383183/92bd8f6d-c165-493c-a318-ba7554f8255e)
+
+
 
 
 
