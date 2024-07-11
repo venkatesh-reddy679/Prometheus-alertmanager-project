@@ -53,6 +53,7 @@ with this type of installation, we can operate the prometheus server lifecycle u
 
    ![image](https://github.com/venkatesh-reddy679/Prometheus-alertmanager-project/assets/60383183/53f1848c-aa23-4924-8f62-8a56d871a57e)
 
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Node Exporter: Node Exporter is a type of prometheus exporter that is designed to extract the metrics from linux servers and expose them in a format that prometheus can understand and scrape. Node Exporter should be installed onn target machines.
 
@@ -93,6 +94,10 @@ Steps to install Node Exporter as SystemD service:
 9. "up" is the most simplest PromQL expression that indicates whether prometheus is able to scrape the target and the two target labels instance and job will be associated with every timeseries that we get from the target.
 
     ![image](https://github.com/venkatesh-reddy679/Prometheus-alertmanager-project/assets/60383183/9bf6717d-2ce8-414f-8613-a18aaf70beb0)
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Bla
 
 
     
