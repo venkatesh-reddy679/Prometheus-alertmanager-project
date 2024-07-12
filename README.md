@@ -225,10 +225,24 @@ alertmanager.yml configuration file consists of 3 sections
 
    ***Receivers***: a receiver contains one or more notifiers like email_configs, slack_configs, etc which are responsible for sending the actual notifications
 
-![image](https://github.com/user-attachments/assets/818c2017-da07-4090-9a14-06d195df9d5b)
-
+![image](https://github.com/user-attachments/assets/6b8c69b9-2b45-49af-9a59-50ae7bf59cf0)
 
 In the route section, we have a default/fallback route that matches with any alert and groups the alert based on alertname. group_wait determines how long the alertmanager should wait to send a notification afetr an alert has been initially triggered. for example, if alertmanager has to wait for 30 seconds to send a notification after an alert has bee triggered, if any other alerts are triggered within tha 30s, they will be grouped together in the same notification. group_interval sets the minimum time interval between sending notifications for the ame group of alerts. for example, if multiple alerts are triggered within the same group,  alertmanager will send a notifiaction for the first alert, then wait for 5 minites before sending another notification for any subsequesnt alerts in the same group. receiver_interval  specifies how often to resend the same alert notification if it continues to be in firing state. finally receiver tells thich receiver the grouped alerts should be forwarded to.
+
+In the receiver section, we have receiver that had email_configs notifier which sends email to the give email. refer to the alertmanager configuration documentation for different notifiers https://prometheus.io/docs/alerting/latest/configuration/ . 
+
+To send an email, we need an app password which we pass as email password. first verify whether the 2 factor authentication is enabled
+
+![image](https://github.com/user-attachments/assets/c9d1a874-173a-4a8f-a2dd-2b75550b7fe8)
+
+then go to https://myaccount.google.com/apppasswords, create an app and copy the password, then pass it to auth_password property.
+
+![image](https://github.com/user-attachments/assets/d8b3851e-c995-4ee3-a4cf-cfdca3928441)
+
+finally update the alertmanager  address in prometheus configuration file and restart proetheus server.
+
+
+
 
 
 
