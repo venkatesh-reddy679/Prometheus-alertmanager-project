@@ -156,6 +156,31 @@ Architecture of Alert Manager:
 
 ![image](https://github.com/user-attachments/assets/62426345-ba4e-4388-aa19-43bd69751f33)
 
+We can configure a single alert manager to receive alerts from multiple Prometheus servers. So, the Prometheus servers send alerts to the alert manager through alertmanager api.
+
+When any alert comes to the alert manager, dispatcher component receives it first and forwards the alert to the inhibition node which allows us to specify rules where we can supress alerts if other alert exists. For example, if alert x exist, I don’t want you to do anthing on alert y. Then, the alert will be forwarded to silencing node where the silencers will mute the alerts. For example, if there is kown maintenance, we expect certain alerts and as it is a planned maintenance, we may want to suppress alerts from being triggerd and notification from being sent. We can set up a silence rule in the alert manager UI to silence the alerts for specific period of time. Then, the alert will be forwarded to routing section which is responsible for deciding whilch alert will be sent to who through what integration. Then the alert will be forwarded to notification engine which is responsible for having all of those third-party integration like email, pager, and chat and sending notification out to a user.
+
+steps to install and setup alsert manager as SystemD service: (installing on same promethues server)
+
+1. go to prometheus downloads page, and download the appropriate version based on your operating system
+
+   ![image](https://github.com/user-attachments/assets/55ef8db1-342c-40c6-84ef-9b4624b40bc6)
+   ![image](https://github.com/user-attachments/assets/5c093ba5-8c35-4b52-808a-08dffea236b5)
+
+2. create an user named alertmanager, move the alertmanager executable file, and amtool to /usr/local/bin and give ownership on them to use alertmanager, make a directory alertmanager in /etc, move the alertmanager.yml file into the director and give ownership ofthe directory to alertmanager
+
+    ![image](https://github.com/user-attachments/assets/ed0eff16-dee0-421e-bf48-f5a98277a54c)
+
+
+
+
+   
+
+
+
+ 
+
+
 
 
 
