@@ -171,6 +171,18 @@ steps to install and setup alsert manager as SystemD service: (installing on sam
 
     ![image](https://github.com/user-attachments/assets/ed0eff16-dee0-421e-bf48-f5a98277a54c)
 
+3. create a service unit file for alertmanager, reload the system daemon and start the alertmanager service
+
+   ![image](https://github.com/user-attachments/assets/bc4d5ff2-a042-48aa-99c5-2490bfeeadd7)
+   ![image](https://github.com/user-attachments/assets/4cc1e5cd-968e-4e5b-91fc-fd1d2b4ca9ce)
+
+4. Alertmanager is exposed on port 9093 oh the host
+
+   ![image](https://github.com/user-attachments/assets/b5ec87bb-9b8d-44ab-94b5-c84053303345)
+
+
+
+
 
 
 
