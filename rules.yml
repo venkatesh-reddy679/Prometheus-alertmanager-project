@@ -1,0 +1,43 @@
+groups:
+  - name: monitoring_project
+    interval: 15s
+    rules:
+      - alert: instance_down
+        expr: up{job="node_exporter"}==0
+        for: 2m
+        labels:
+          severity: critical
+          team: infra
+        annotations:
+          info: "instance: {{.Labels.instace}}\n status: down\n for:2 minutes\n labels: {{.Labels}}"
+      - alert: endpoint_down
+        expr: probe_success{job="blackbox"}==0
+        for: 2m
+        labels:
+          severity: critical
+          team: api
+        annotations:
+          info: "endpoint: {{.Labels.instance}}\n status: down\n for: 2 minutes\n labels: {{.Labels}}"
+      - alert: memory_below_50_percent
+        expr: 100*node_memory_MemAvailable_bytes{job="node_exporter"}/node_memory_MemTotal_bytes{job="node_exporter"}<50
+        for: 2m
+        labels:
+          severity: major
+          team: infra
+        annotations:
+          info: "instance: {{.Labels.instance}}\n status: low memory\n value: {{.Value}}\n for: 2 minutes\n labels:  {{.Labels}}"
+     - alert: file_system_full    
+       expr: node_filesystem_avail_bytes{job="node_exporter",device !="tmpfs"}/node_filesystem_size_bytes{job="node_exporter",device !="tmpfs"}*100<30
+       for: 2m
+       labels:
+         severity: major   
+         team: infra
+       annotations:
+         info: "file system: {{.Labels.device}}\n status: hish disk usage\n value: {{.Value}}\n instance: {{.Labels.instance}}\n for: 2 minutes\n labels: {{.Labels}}"
+     - alert: HostOutOfDiskSpace
+       expr: (node_filesystem_avail{mountpoint="/"} * 100) / node_filesystem_size{mountpoint="/"} < 50  # Expression to detect low disk space
+       for: 1s
+       labels:
+        severity: minor
+       annotations:
+        info: "Disk is almost full (< 50% left)\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}"
