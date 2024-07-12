@@ -1,9 +1,9 @@
 ![image](https://github.com/venkatesh-reddy679/Prometheus-alertmanager-project/assets/60383183/633f40b6-b544-4305-b0dc-393b2ade497e)
 
 
-Prometheus: Prometheus is an open-source cross platform monitoring and alerting tool kit that scrapes the configured targets such as servers, containers, and applications periodically and stores the collected metrics in a time-series database which can be retrieved and visualised later using prometheus built-in feautres like console-templates and expression browser or third-party tools like Grafana.
+***Prometheus***: Prometheus is an open-source cross platform monitoring and alerting tool kit that scrapes the configured targets such as servers, containers, and applications periodically and stores the collected metrics in a time-series database which can be retrieved and visualised later using prometheus built-in feautres like console-templates and expression browser or third-party tools like Grafana.
 
-Architecture of Prometheus:
+***Architecture of Prometheus***:
 
 ![image](https://github.com/venkatesh-reddy679/Prometheus-alertmanager-project/assets/60383183/f0c4fe0c-6de6-400c-b71c-d80d053bd634)
 
@@ -15,13 +15,13 @@ There are 3 components within in the prometheus server
       example: curl -X POST http://<prometheus-ip>:9090/api/v1/query --data "query=up" --data "time=unixtimestamp"
       
 Prometheus comes with various components like
-1. Exporters: Prometheus basically operates based on pull model, means that when targets expose metrics, then prometheus server scrapes them periodically. By default, targets like servers (linux or windows) or applications doesn't expose metrics. So Promethues provides exporters like Node exporters (for linux servers), Windows exporters (for windows servers), blackbox exporters (for monitoring the performance and health of endpoints) which should be installed on the specific target and responsible for collecting metrics from the targets and expose the in a format that the prometheus can understand and scrape.
-2. Prometheus-client libraries: Thes libraries enable us to instrument custom-built application developed in python, java, ruby, and go to expose custome metrics like total number of requests to an api, total no of errors, and so on.
-3. Pushgateway: Prometheus may not be able to scrape short-lived jobs which are configured as targets as they run for shorter period of time. To overcome this, prometheus provides a component called pushgateway that collectes the metrics from jobs and expose them in a format that promethue can understand. Prometheus scrapes the pushgateways like any other target perodically.
-4. Service Discovery: As promethues operate based on pull model, it should know  about list of target to scrape. So, in the case of a static environment, we update the promethues configuration file and restart the promethus server everytime we add or remove a target. But in the case of dynamic environment like kubernetes or any auto-scaling  enabled cloud environment (AWS, Azure, GCP) where the resources will be created and terminated automatically, it will be very difficult to update the promethues configuration everytime. So, prometheus comes with a component called service-discovery that discovers the list of targets to monitor dynamically.
-5. AlertManager: Prometheus allows us to define alert rules and when any rules is violated, then promethues triggers that alert but it can't handle the nofitications itself. So, Promethues comes with alertmanager which actions on the alerts by sending notification to the administrators or corresponding people through gmal, slack channel, sms, etc.
+1. ***Exporters***: Prometheus basically operates based on pull model, means that when targets expose metrics, then prometheus server scrapes them periodically. By default, targets like servers (linux or windows) or applications doesn't expose metrics. So Promethues provides exporters like Node exporters (for linux servers), Windows exporters (for windows servers), blackbox exporters (for monitoring the performance and health of endpoints) which should be installed on the specific target and responsible for collecting metrics from the targets and expose the in a format that the prometheus can understand and scrape.
+2. ***Prometheus-client libraries***: Thes libraries enable us to instrument custom-built application developed in python, java, ruby, and go to expose custome metrics like total number of requests to an api, total no of errors, and so on.
+3. ***Pushgateway***: Prometheus may not be able to scrape short-lived jobs which are configured as targets as they run for shorter period of time. To overcome this, prometheus provides a component called pushgateway that collectes the metrics from jobs and expose them in a format that promethue can understand. Prometheus scrapes the pushgateways like any other target perodically.
+4. ***Service Discovery***: As promethues operate based on pull model, it should know  about list of target to scrape. So, in the case of a static environment, we update the promethues configuration file and restart the promethus server everytime we add or remove a target. But in the case of dynamic environment like kubernetes or any auto-scaling  enabled cloud environment (AWS, Azure, GCP) where the resources will be created and terminated automatically, it will be very difficult to update the promethues configuration everytime. So, prometheus comes with a component called service-discovery that discovers the list of targets to monitor dynamically.
+5. ***AlertManager***: Prometheus allows us to define alert rules and when any rules is violated, then promethues triggers that alert but it can't handle the nofitications itself. So, Promethues comes with alertmanager which actions on the alerts by sending notification to the administrators or corresponding people through gmal, slack channel, sms, etc.
 
-Steps to install Prometheus as SystemD service: 
+***Steps to install Prometheus as SystemD service***: 
 
 with this type of installation, we can operate the prometheus server lifecycle using systemctl 
 
@@ -54,11 +54,11 @@ with this type of installation, we can operate the prometheus server lifecycle u
    ![image](https://github.com/venkatesh-reddy679/Prometheus-alertmanager-project/assets/60383183/53f1848c-aa23-4924-8f62-8a56d871a57e)
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+***Node Exporter***: Node Exporter is a type of prometheus exporter that is designed to extract the metrics from linux servers and expose them in a format that prometheus can understand and scrape. Node Exporter should be installed onn target machines.
 
-Node Exporter: Node Exporter is a type of prometheus exporter that is designed to extract the metrics from linux servers and expose them in a format that prometheus can understand and scrape. Node Exporter should be installed onn target machines.
-
-Steps to install and setup Node Exporter as SystemD service:
+***Steps to install and setup Node Exporter as SystemD service***:
 
 1. go to prometheus downloads page and choose the version based on your operating system
 
@@ -100,15 +100,19 @@ Steps to install and setup Node Exporter as SystemD service:
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-Blackbox Exporter: Blackbox exporter is a type of prometheus exporter that is used to probe the endpoints such as http, https, tcp, dns and more. It allows us to monitor the health and performance of these endpoints from an external perspective, essentially treating the endpoints as "black boxes" whose internal workings are not inspected, only their responses.
+***Blackbox Exporter***: Blackbox exporter is a type of prometheus exporter that is used to probe the endpoints such as http, https, tcp, dns and more. It allows us to monitor the health and performance of these endpoints from an external perspective, essentially treating the endpoints as "black boxes" whose internal workings are not inspected, only their responses.
 
-Key Features
+***Key Features***:
+
 HTTP(S) Probing: Measures latency, response codes, and other HTTP-level metrics.
+
 TCP Probing: Checks the availability and latency of TCP connections.
+
 DNS Probing: Measures the performance and correctness of DNS lookups.
+
 ICMP Probing: Similar to ping, it checks the availability and round-trip time of a host.
 
-Steps to install and setup blackbox exporter as SystemD service: (over the same prometheus server)
+***Steps to install and setup blackbox exporter as SystemD service***: (over the same prometheus server)
 
 1. go to prometheus downloads page and choose the specific version based on the operating system
 
@@ -150,9 +154,9 @@ Steps to install and setup blackbox exporter as SystemD service: (over the same 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-Alert Manager: prometheus can trigger alert but can't action on the alerts. So, Alert manager is reponsible for receiving the alerts from prometheus server and action on them by sending actual notifications to the users.
+***Alert Manager***: prometheus can trigger alert but can't action on the alerts. So, Alert manager is reponsible for receiving the alerts from prometheus server and action on them by sending actual notifications to the users.
 
-Architecture of Alert Manager:
+***Architecture of Alert Manager***:
 
 ![image](https://github.com/user-attachments/assets/62426345-ba4e-4388-aa19-43bd69751f33)
 
@@ -160,7 +164,7 @@ We can configure a single alert manager to receive alerts from multiple Promethe
 
 When any alert comes to the alert manager, dispatcher component receives it first and forwards the alert to the inhibition node which allows us to specify rules where we can supress alerts if other alert exists. For example, if alert x exist, I don’t want you to do anthing on alert y. Then, the alert will be forwarded to silencing node where the silencers will mute the alerts. For example, if there is kown maintenance, we expect certain alerts and as it is a planned maintenance, we may want to suppress alerts from being triggerd and notification from being sent. We can set up a silence rule in the alert manager UI to silence the alerts for specific period of time. Then, the alert will be forwarded to routing section which is responsible for deciding whilch alert will be sent to who through what integration. Then the alert will be forwarded to notification engine which is responsible for having all of those third-party integration like email, pager, and chat and sending notification out to a user.
 
-steps to install and setup alsert manager as SystemD service: (installing on same promethues server)
+***steps to install and setup alert manager as SystemD service***: (installing on same promethues server)
 
 1. go to prometheus downloads page, and download the appropriate version based on your operating system
 
@@ -182,17 +186,21 @@ steps to install and setup alsert manager as SystemD service: (installing on sam
 
 
 ---------------------------------------------------------------------------------------------------------------------------------------
-setting up the alerts:
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+***setting up the alerts***:
 
 1. create a rules.yml file in /etc/prometheus and give ownership to the user prometheus. Define the alert rules in the file using PromQL expresion language and when any alert expression evaluates to true, means any expression retuns a vector , then the a alert is triggered for each result vector. (refer to the rules.yml file in the git)
 
 Alerts can be in 3 differet states:
 
-inactive: this state indicates that the PromQL expressions have not returned any result
+***inactive***: this state indicates that the PromQL expressions have not returned any result
 
-pending: this state indicates that the PromQL expressions returned results but it hasn't been long enough to be considered firing. This actually depends on what value we set for for clause for each alert. if there is no for clause defined, then the alert immediatly enter firing state
+***pending***: this state indicates that the PromQL expressions returned results but it hasn't been long enough to be considered firing. This actually depends on what value we set for for clause for each alert. if there is no for clause defined, then the alert immediatly enter firing state
 
-firing: this state indicates that PromQL expression evaluates to true for the period defined in for clause continuosly and prometheus server sends the alert to alert manager to send the notification to the users.
+***firing***: this state indicates that PromQL expression evaluates to true for the period defined in for clause continuosly and prometheus server sends the alert to alert manager to send the notification to the users.
 
 2. update the prometheus configuration file and restart prometheus server, and verify the configured alert rules in prometheus web UI
 
@@ -202,6 +210,15 @@ firing: this state indicates that PromQL expression evaluates to true for the pe
 3. In the alerts section we can see which alert are in inactive, pending and firing state
 
    ![image](https://github.com/user-attachments/assets/f5ac8a78-c3a3-4f2b-ad87-82609ab5abae)
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+***Configuring the alertmanager to send notifications***:
+
+
 
 
 
