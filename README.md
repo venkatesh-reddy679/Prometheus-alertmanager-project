@@ -150,6 +150,11 @@ Steps to install and setup blackbox exporter as SystemD service: (over the same 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
+Alert Manager: prometheus can trigger alert but can't action on the alerts. So, Alert manager is reponsible for receiving the alerts from prometheus server and action on them by sending actual notifications to the users.
+
+Architecture of Alert Manager:
+
+![image](https://github.com/user-attachments/assets/62426345-ba4e-4388-aa19-43bd69751f33)
 
 
 
