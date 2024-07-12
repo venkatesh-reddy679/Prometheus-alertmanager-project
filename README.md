@@ -181,6 +181,34 @@ steps to install and setup alsert manager as SystemD service: (installing on sam
    ![image](https://github.com/user-attachments/assets/b5ec87bb-9b8d-44ab-94b5-c84053303345)
 
 
+---------------------------------------------------------------------------------------------------------------------------------------
+setting up the alerts:
+
+1. create a rules.yml file in /etc/prometheus and give ownership to the user prometheus. Define the alert rules in the file using PromQL expresion language and when any alert expression evaluates to true, means any expression retuns a vector , then the a alert is triggered for each result vector. (refer to the rules.yml file in the git)
+
+Alerts can be in 3 differet states:
+
+inactive: this state indicates that the PromQL expressions have not returned any result
+
+pending: this state indicates that the PromQL expressions returned results but it hasn't been long enough to be considered firing. This actually depends on what value we set for for clause for each alert. if there is no for clause defined, then the alert immediatly enter firing state
+
+firing: this state indicates that PromQL expression evaluates to true for the period defined in for clause continuosly and prometheus server sends the alert to alert manager to send the notification to the users.
+
+2. update the prometheus configuration file and restart prometheus server, and verify the configured alert rules in prometheus web UI
+
+   ![image](https://github.com/user-attachments/assets/4b60cbfe-2fbf-4b9b-ad60-480c72187db0)
+   ![image](https://github.com/user-attachments/assets/52e43186-303a-43cb-9baa-50953429f7ba)
+
+3. In the alerts section we can see which alert are in inactive, pending and firing state
+
+   ![image](https://github.com/user-attachments/assets/f5ac8a78-c3a3-4f2b-ad87-82609ab5abae)
+
+
+
+
+
+
+
 
 
 
