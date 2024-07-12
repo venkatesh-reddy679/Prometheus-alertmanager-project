@@ -231,6 +231,11 @@ In the route section, we have a default/fallback route that matches with any ale
 
 In the receiver section, we have receiver that had email_configs notifier which sends email to the give email. refer to the alertmanager configuration documentation for different notifiers https://prometheus.io/docs/alerting/latest/configuration/ . 
 
+we can customise the notification we send to user using GO templating language and we get access to various information about the alerts like
+
+![image](https://github.com/user-attachments/assets/dc31d371-26dc-47b3-9f1d-63c964cff3fa)
+
+
 To send an email, we need an app password which we pass as email password. first verify whether the 2 factor authentication is enabled
 
 ![image](https://github.com/user-attachments/assets/c9d1a874-173a-4a8f-a2dd-2b75550b7fe8)
