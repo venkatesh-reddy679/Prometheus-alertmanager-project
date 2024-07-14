@@ -244,9 +244,21 @@ then go to https://myaccount.google.com/apppasswords, create an app and copy the
 
 ![image](https://github.com/user-attachments/assets/d8b3851e-c995-4ee3-a4cf-cfdca3928441)
 
-finally update the alertmanager  address in prometheus configuration file and restart proetheus server.
+finally update the alertmanager  address (public IP address if it is running on different sever) in prometheus configuration file and restart proetheus server.
 
+![image](https://github.com/user-attachments/assets/bbf1ba88-f639-403c-a5e3-9f38c380283b)
 
+------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------
+
+***Testing the alert notification***
+
+We can see that on eof the alerts is already firing and prometheus server has sent the alert to the alertmanager
+
+![image](https://github.com/user-attachments/assets/4d07cbbe-d1e9-4219-b455-13622f57c061)
+![image](https://github.com/user-attachments/assets/e5ccc7df-f9b3-4a88-be50-4efb44d86478)
 
 
 
