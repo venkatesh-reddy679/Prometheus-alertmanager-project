@@ -12,18 +12,18 @@
 ![image](https://github.com/venkatesh-reddy679/Prometheus-alertmanager-project/assets/60383183/f0c4fe0c-6de6-400c-b71c-d80d053bd634)
 
 There are 3 components within in the prometheus server
-   1. Retrieval worker: It is reponsible for scraping the configred targets periodically
-   2. Time-Sereis database: The collected metrics are stored along with the timestamp when is is collected in the time-series database. Basically, a time-series data is a metic with a unique set of labels for which we collected the values overtime
-   3. HTTP api server: Promethues use a specific query language called PormQL to retreive the time-series data and validate. We can execute those PromQL queries programatically through the HTTP api server. This api is exposed at "/api/v1/query"
+   1. Retrieval worker: It is reponsible for scraping the configured targets periodically
+   2. Time-Series database: The collected metrics are stored along with the timestamp when the scrape occured in the time-series database. Basically, a time-series data is a metic with a unique set of labels for which we collect the values overtime
+   3. HTTP api server: Promethues use a specific query language called PromQL to retreive the time-series data and validate. We can execute those PromQL queries programatically through the HTTP api server. This api is exposed at "/api/v1/query"
 
       example: curl -X POST http://<prometheus-ip>:9090/api/v1/query --data "query=up" --data "time=unixtimestamp"
       
-Prometheus comes with various components like
-1. ***Exporters***: Prometheus basically operates based on pull model, means that when targets expose metrics, then prometheus server scrapes them periodically. By default, targets like servers (linux or windows) or applications doesn't expose metrics. So Promethues provides exporters like Node exporters (for linux servers), Windows exporters (for windows servers), blackbox exporters (for monitoring the performance and health of endpoints) which should be installed on the specific target and responsible for collecting metrics from the targets and expose the in a format that the prometheus can understand and scrape.
-2. ***Prometheus-client libraries***: Thes libraries enable us to instrument custom-built application developed in python, java, ruby, and go to expose custome metrics like total number of requests to an api, total no of errors, and so on.
+Prometheus comes with various external components like
+1. ***Exporters***: Prometheus basically operates based on pull model, means that when targets expose metrics, then prometheus server scrapes them periodically. By default, targets like servers (linux or windows) or applications doesn't expose metrics. So Promethues provides exporters like Node exporters (for linux servers), and Windows exporters (for windows servers) which should be installed on the specific target, and responsible for collecting metrics from the targets and  blackbox exporters (for monitoring the performance and health of endpoints)  that probe the endpoints and expose them in a format that the prometheus can understand and scrape.
+2. ***Prometheus-client libraries***: These libraries enable us to instrument custom-built application like python, java, ruby, and go to expose custom metrics like total number of requests to an api, total no of errors, and so on.
 3. ***Pushgateway***: Prometheus may not be able to scrape short-lived jobs which are configured as targets as they run for shorter period of time. To overcome this, prometheus provides a component called pushgateway that collectes the metrics from jobs and expose them in a format that promethue can understand. Prometheus scrapes the pushgateways like any other target perodically.
 4. ***Service Discovery***: As promethues operate based on pull model, it should know  about list of target to scrape. So, in the case of a static environment, we update the promethues configuration file and restart the promethus server everytime we add or remove a target. But in the case of dynamic environment like kubernetes or any auto-scaling  enabled cloud environment (AWS, Azure, GCP) where the resources will be created and terminated automatically, it will be very difficult to update the promethues configuration everytime. So, prometheus comes with a component called service-discovery that discovers the list of targets to monitor dynamically.
-5. ***AlertManager***: Prometheus allows us to define alert rules and when any rules is violated, then promethues triggers that alert but it can't handle the nofitications itself. So, Promethues comes with alertmanager which actions on the alerts by sending notification to the administrators or corresponding people through gmal, slack channel, sms, etc.
+5. ***AlertManager***: Prometheus allows us to define alert rules and when any rules are violated, then promethues triggers that alert but it can't handle the nofitications itself. So, Promethues comes with alertmanager which actions on the alerts by sending notification to the administrators or corresponding people through gmal, slack channel, sms, etc.
 
 ***Steps to install Prometheus as SystemD service***: 
 
@@ -196,7 +196,7 @@ When any alert comes to the alert manager, dispatcher component receives it firs
 
 ***setting up the alerts***:
 
-1. create a rules.yml file in /etc/prometheus and give ownership to the user prometheus. Define the alert rules in the file using PromQL expresion language and when any alert expression evaluates to true, means any expression retuns a vector , then the a alert is triggered for each result vector. (refer to the rules.yml file in the git)
+1. create a rules.yml file in /etc/prometheus and give ownership to the user prometheus. Define the alert rules in the file using PromQL expresion language and when any alert expression evaluates to true, means any expression results in a vector , then the alert is triggered for each result vector. (refer to the rules.yml file in the git)
 
 Alerts can be in 3 differet states:
 
@@ -233,11 +233,11 @@ alertmanager.yml configuration file consists of 3 sections
 ![image](https://github.com/user-attachments/assets/1a2ef4e2-902b-4bcb-803d-0195e8e26ffb)
 
 
-In the route section, we have a default/fallback route that matches with any alert and groups the alert based on values we pass in to group_by property. group_wait determines how long the alertmanager should wait to send a notification afetr an alert has been initially triggered. for example, if alertmanager has to wait for 30 seconds to send a notification after an alert has bee triggered, if any other alerts are triggered within tha 30s, they will be grouped together in the same notification. group_interval sets the minimum time interval between sending notifications for the ame group of alerts. for example, if multiple alerts are triggered within the same group,  alertmanager will send a notifiaction for the first alert, then wait for 5 minites before sending another notification for any subsequesnt alerts in the same group. receiver_interval  specifies how often to resend the same alert notification if it continues to be in firing state. finally receiver tells thich receiver the grouped alerts should be forwarded to.
+In the route section, we have a default/fallback route that matches with any alert and groups the alert based on values we pass in to group_by property. group_wait determines how long the alertmanager should wait to send a notification after an alert has been initially triggered. for example, if any alert is triggered,  alertmanager has to wait for 30 seconds to send a notification , if any other alerts are triggered within the 30s, those alerts will be grouped together and sent in the same notification. group_interval sets the minimum time interval between sending notifications for the same group of alerts. for example, if multiple alerts are triggered within the same group,  alertmanager will send a notification for the first alert, then wait for 5 minutes before sending another notification for any subsequent alerts in the same group. receiver_interval  specifies how often to resend the same alert notification if it continues to be in firing state. finally receiver tells thich receiver the grouped alerts should be forwarded to.
 
 In the receiver section, we have receiver that had email_configs notifier which sends email to the give email. refer to the alertmanager configuration documentation for different notifiers https://prometheus.io/docs/alerting/latest/configuration/ . 
 
-we can customise the notification we send to user using GO templating language and we get access to various information about the alerts like
+we can customize the notification we send to user using GO templating language and we get access to various information about the alerts like
 
 ![image](https://github.com/user-attachments/assets/dc31d371-26dc-47b3-9f1d-63c964cff3fa)
 
