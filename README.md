@@ -225,9 +225,10 @@ alertmanager.yml configuration file consists of 3 sections
 
    ***Receivers***: a receiver contains one or more notifiers like email_configs, slack_configs, etc which are responsible for sending the actual notifications
 
-![image](https://github.com/user-attachments/assets/ae67241c-14af-47ed-827b-73389f743bdb)
 
-In the route section, we have a default/fallback route that matches with any alert and groups the alert based on alertname. group_wait determines how long the alertmanager should wait to send a notification afetr an alert has been initially triggered. for example, if alertmanager has to wait for 30 seconds to send a notification after an alert has bee triggered, if any other alerts are triggered within tha 30s, they will be grouped together in the same notification. group_interval sets the minimum time interval between sending notifications for the ame group of alerts. for example, if multiple alerts are triggered within the same group,  alertmanager will send a notifiaction for the first alert, then wait for 5 minites before sending another notification for any subsequesnt alerts in the same group. receiver_interval  specifies how often to resend the same alert notification if it continues to be in firing state. finally receiver tells thich receiver the grouped alerts should be forwarded to.
+![image](https://github.com/user-attachments/assets/5ce30cfe-0c41-4cb4-892e-7c6ba64f46e1)
+
+In the route section, we have a default/fallback route that matches with any alert and groups the alert based on values we pass in to group_by property. group_wait determines how long the alertmanager should wait to send a notification afetr an alert has been initially triggered. for example, if alertmanager has to wait for 30 seconds to send a notification after an alert has bee triggered, if any other alerts are triggered within tha 30s, they will be grouped together in the same notification. group_interval sets the minimum time interval between sending notifications for the ame group of alerts. for example, if multiple alerts are triggered within the same group,  alertmanager will send a notifiaction for the first alert, then wait for 5 minites before sending another notification for any subsequesnt alerts in the same group. receiver_interval  specifies how often to resend the same alert notification if it continues to be in firing state. finally receiver tells thich receiver the grouped alerts should be forwarded to.
 
 In the receiver section, we have receiver that had email_configs notifier which sends email to the give email. refer to the alertmanager configuration documentation for different notifiers https://prometheus.io/docs/alerting/latest/configuration/ . 
 
@@ -255,10 +256,22 @@ finally update the alertmanager  address (public IP address if it is running on 
 
 ***Testing the alert notification***
 
-We can see that on eof the alerts is already firing and prometheus server has sent the alert to the alertmanager
+As part this project, I have installed node exporter on a linux server and also running the java application on the same linux server which is getting probed by a blackbox exporter. So, if the linux server is shutdown, then the node exporter target will be down and java application endpoint will alo be down which will lead to total of 2 alerts. 
 
-![image](https://github.com/user-attachments/assets/4d07cbbe-d1e9-4219-b455-13622f57c061)
-![image](https://github.com/user-attachments/assets/e5ccc7df-f9b3-4a88-be50-4efb44d86478)
+Initially the alerts will be inactive state, once the expressions up{job="node_exporter"}==0 and probe_success{job="blackbox"}==0 results in one or more vectors, then the alerts enter pending state and prometheus server checks if the expressions evaluate to true continuosly for the specified period of time in for clause, if PromQL expression evaluates to true, then the alerts enter the firing sate and prometheus will send the alerts to alert manager
+
+![image](https://github.com/user-attachments/assets/4de956ed-1421-4b9e-859e-84b120083627)
+
+![image](https://github.com/user-attachments/assets/e9a6c99c-abcc-44fb-9891-220e6babb457)
+
+![image](https://github.com/user-attachments/assets/b7c55d68-21af-4449-8f18-23ebd64ab580)
+
+
+
+
+
+
+
 
 
 
